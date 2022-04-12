@@ -1,38 +1,293 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    /* font-family: 'Josefin Sans', sans-serif; */
+}
+.App{
+    height: 100vh;
+}
+.Main{
+    display: grid;
+    grid-template-columns: 3fr 17fr;
+    position: relative;
+    height: 100%;
+}
+.SideNavbar{
+    /* border: 1px solid black; */
+    box-shadow: 5px 20px 20px rgba(0, 0, 0, 0.123);
+    height: 100%;
+    /* padding:0 1rem; */
+    background-color: #fff;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.NavLinks{
+    list-style: none;
+    padding: 1rem 0;
+}
+.navLink {
+    text-decoration: none;
+}
+.navLink .Link{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #393e46;
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    padding-left: 1rem;
+    /* margin-bottom:0.2rem ; */
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    transition: 300ms all ease;
+    /* border: 1px solid black; */
+}
+.navLink .Link:hover{
+    /* padding-left: 1.3rem; */
+    /* background-color: #9ba6a5; */
+    /* border-left: 3px solid black;
+    border-right: 3px solid black; */
+    color: black;
+}
+.navLink .Link p{
+    display: flex;
+    align-items: center;
+    gap:0.5rem;
+}
+.LinkActive{
+    background: linear-gradient(
+    90deg,
+    #dc2f2f 0%,
+    #dc2f2f98 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    padding-left: 2rem !important;
+    color: black !important;
+    /* border-left: 4px solid rgb(39, 176, 255) !important; */
+    border-right: 4px solid #dc2f2f !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.subnavLINKS{
+    /* border: 1px solid black; */
+    display: block;
+    background-color: #eeeeee;
+    transition: 300ms all ease;
+}
+.subnavLINKS_Hide{
+    display: none;
+}
+.subnavLink{
+    text-decoration: none;
+    
+}
+.subnavLink li {
+    display: flex;
+    justify-content: left;
+    color: #393e46;
+    padding: 0.6rem 0;
+    padding-left: 1.5rem;
+    font-weight: 500;
+    align-items: center;
+    font-size: 0.9rem;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    transition: 300ms all ease;
+}
+.subnavLink li:hover{
+    padding-left: 2rem;
+    background-color: transparent;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+}
+.subnavLink li span{
+    font-size: 1.2rem;
+    
+}
+.Navbar{
+    padding: 0.7rem 0.5rem;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.089);
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.head{
+    display: flex;
+    gap: 0.1rem;
+    align-items: center;
+    padding: 0rem 0;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color: #fff;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0.699);
+    
+}
+.head h2 span{
+    color: #dc2f2f;
+    text-shadow:none;
 }
 
-.App-link {
-  color: #61dafb;
+.head > span{
+    font-size: 2.2rem;
+    color: #dc2f2f;
+    text-shadow:none;
+}
+.Navbar div:nth-child(2){
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #363636;
+}
+.Navbar div span:nth-child(2){
+    cursor: pointer;
+    color: #dc2f2f;
+}
+.DataContainer{
+    /* border: 1px solid black; */
+    padding: 1rem 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.breadcrumb{
+    /* border: 1px solid black; */
+   display: flex;
+   justify-content: right;
+   margin-bottom: 1rem;
 }
+.breadcrumb span{
+   display: flex;
+   align-items: center;
+   font-weight: 500;
+   color: #363636;
+}
+.breadcrumb span a{
+    text-decoration: none;
+    margin: 0 0.2rem;
+    gap: 0.1rem;
+    color: #363636;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+}
+.breadcrumb span a span{
+    font-size: 1.2rem;
+}
+
+.Header{
+    /* border-bottom: 2px solid #36363648; */
+    box-shadow: 0px 0px 5px #36363636;
+    padding: 0.7rem;
+    border-radius: 3px;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.Header a{
+    background: #fff;
+    border: #363636 1px solid;
+    text-decoration: none;
+    padding: 0.4rem 0.6rem ;
+    color: #363636;
+    font-weight: 500;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: 300ms all ease;
+}
+.Header a:hover{
+    background-color: #363636;
+    color: #fff;
+}
+.Header h2{
+    text-transform: uppercase;
+    display: flex;
+    align-items: flex-end;
+    justify-content: left;
+    gap: 0.2rem;
+    color: #363636;
+}
+.Header h2 span{
+    font-size: 1.8rem;
+}
+
+.SponserIMG{
+    height: 5rem;
+}
+
+
+
+.Driver_opt{
+    box-shadow: 0px 0px 5px #36363636;
+    padding: 1rem 1.5rem;
+    border-radius: 3px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 1rem;
+}
+.Driver_opt > div:first-child{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+.Driver_opt > div:nth-child(2){
+    display: flex;
+    flex-direction: column;
+}
+.Driver_opt > div:nth-child(2) button{
+    background-color: #363636;
+    border: 1px solid #363636;
+    margin-top: 1rem;
+    border-radius: 4px;
+    color: #fff;
+    text-transform: uppercase;
+    margin-top: 2.1rem;
+    font-size: 1.3rem;
+    padding: 0.3rem 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    transition: 300ms all ease;
+    letter-spacing: 2px;
+}
+.Driver_opt > div:nth-child(2) button:hover{
+    background:#36363656 ;
+    border:1px solid #36363644;
+    color: #363636;
+}
+.driver_input{
+    display: flex;
+    flex-direction: column;
+}
+.driver_input input{
+    border: 1px solid #363636;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    color: #363636;
+    padding: 0.4rem 0.4rem;
+}
+.driver_input select{
+    border: 1px solid #363636;
+    border-radius: 4px;
+    font-size: 1rem;
+    outline: none;
+    color: #363636;
+    padding: 0.55rem 0.55rem;
+}
+
+.driver_input label{
+    font-size: 1rem;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #363636;
+    padding: 0.4rem 0;
+    letter-spacing: 2px;
+}
+
