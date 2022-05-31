@@ -1,56 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-// import { GetUserList } from '../../actions/HomeActions'
+import { GetUserList } from '../../actions/HomeActions'
 import MUIDataTable from 'mui-datatables'
 import { Link } from 'react-router-dom'
 
 const UserList = () => {
     const dispatch = useDispatch()
 
-    const UserList = useSelector(state => state.Walkathon.UserList);
+    const UserList = useSelector(state => state.MuscleFuel.UserList);
 
     const [Mobile, setMobile] = useState('')
     const [Email, setEmail] = useState('')
     const [USERS, setUSERS] = useState(false)
     
     useEffect(() => {
-        // dispatch(GetUserList())
+        dispatch(GetUserList())
     }, [])
-
-    useEffect(() => {
-     if(UserList){
-      setUSERS(UserList)
-     }
-    }, [UserList])
-    
-    useEffect(() => {
-      if(UserList){
-          if(Mobile){
-           var Filtered = UserList.filter(data=>data.phone.includes(Mobile))
-           setUSERS(Filtered)
-          }else{
-            setUSERS(UserList)
-          }
-      }
-   }, [Mobile])
-
-   useEffect(() => {
-      if(UserList){
-        if(Email){
-          var Filtered = UserList.filter(data=>data.email.toUpperCase().includes(Email.toUpperCase()))
-          setUSERS(Filtered)
-         }else{
-           setUSERS(UserList)
-         }
-      }
-   }, [Email])
    
+    useEffect(() => {
+      if(UserList){
+        setUSERS(UserList)
+      }else{
+        setUSERS(false)
+      }
+    }, [UserList])
 
-   console.log('USERS',USERS);
+   console.log('UserList',UserList);
+
   const columns = [
     
     {
-      name: "first_name",
+      name: "user_firstname",
       label: "First Name",
       options: {
         filter: true,
@@ -64,7 +44,7 @@ const UserList = () => {
       },
     },
     {
-      name: "last_name",
+      name: "user_lastname",
       label: "Last Name",
       options: {
         filter: true,
@@ -77,50 +57,9 @@ const UserList = () => {
         }
       }
     },
+    
     {
-      name: "age_group",
-      label: "Age Group",
-      options: {
-        filter: true,
-        sort: true,
-        customHeadLabelRender:()=>{
-          return<span style={{
-            letterSpacing:'0',
-            fontWeight:'600'
-          }}>Age Group</span>
-        },
-        customBodyRender: (age_group)=>{
-          return <>
-            {age_group?age_group.map((age,idx)=>(
-              <span>{age.name}</span>
-            )):null}
-          </>
-        }
-      }
-    },
-    {
-      name: "medical_conditions",
-      label: "Medical Conditions",
-      options: {
-        filter: true,
-        sort: true,
-        customHeadLabelRender:()=>{
-          return<span style={{
-            letterSpacing:'0',
-            fontWeight:'600'
-          }}>Medical Conditions</span>
-        },
-        customBodyRender: (medical_conditions)=>{
-          return <>
-            {medical_conditions?medical_conditions.map((condition,idx)=>(
-              <span>{condition.name}, </span>
-            )):null}
-          </>
-        }
-      }
-    },
-    {
-      name: "phone",
+      name: "user_mobile",
       label: "Phone",
       options: {
         filter: true,
@@ -134,8 +73,8 @@ const UserList = () => {
       }
     },
     {
-      name: "stepData",
-      label: "Total Distance",
+      name: "email",
+      // label: "Total Distance",
       options: {
         filter: true,
         sort: true,
@@ -143,17 +82,26 @@ const UserList = () => {
           return<span style={{
             letterSpacing:'0',
             fontWeight:'600'
-          }}>Total Distance</span>
+          }}>E-Mail</span>
         },
-        customBodyRender: (stepData)=>{
-          return <>
-            {stepData.distance?stepData.distance.toFixed(0):0} Meters
-          </>
-      }
     },
   },
   {
-    name: "stepData",
+    name: "date_of_birth",
+    // label: "Total Distance",
+    options: {
+      filter: true,
+      sort: true,
+      customHeadLabelRender:()=>{
+        return<span style={{
+          letterSpacing:'0',
+          fontWeight:'600'
+        }}>DOB</span>
+      },
+  },
+},
+  {
+    name: "user_gender",
     label: "Total Steps",
     options: {
       filter: true,
@@ -162,17 +110,12 @@ const UserList = () => {
         return<span style={{
           letterSpacing:'0',
           fontWeight:'600'
-        }}>Total Steps</span>
+        }}>Gender</span>
       },
-      customBodyRender: (stepData)=>{
-        return <>
-          {stepData.steps?stepData.steps:0}
-        </>
-    }
   },
 },
 {
-  name: "attendance_no",
+  name: "status",
   label: "Attendance No",
   options: {
     filter: true,
@@ -181,18 +124,13 @@ const UserList = () => {
       return<span style={{
         letterSpacing:'0',
         fontWeight:'600'
-      }}>Attendance No</span>
+      }}>Status</span>
     },
-    customBodyRender: (attendance_no)=>{
-      return <>
-        {attendance_no?attendance_no:' '}
-      </>
-  }
 },
 },
     {
-      name: "id",
-      label: "Action",
+      name: "user_master_id",
+      // label: "Action",
       options: {
         filter: true,
         sort: true,
@@ -200,12 +138,12 @@ const UserList = () => {
           return<span style={{
             letterSpacing:'0',
             fontWeight:'600'
-          }}>Action</span>
+          }}>Statistics</span>
         },
-        customBodyRender: (id)=>{
+        customBodyRender: (user_master_id)=>{
           return <>
-            <Link to={`/users/${id}`}>
-              <span style={{color:'#363636'}} class="material-icons-outlined">visibility</span>
+            <Link to={`/health/Stats/${user_master_id}`}>
+              <span style={{color:'#dc2f2f'}} class="material-icons-outlined">equalizer</span>
             </Link>
           </>
         }
@@ -232,20 +170,20 @@ const UserList = () => {
     <div className='IMP'>
       <div className="breadcrumb">
         <span>
-          <Link to='/users/registered'><span class="material-icons-outlined">group</span>User</Link>/
+          <Link to='/health'><span class="material-icons-outlined">health_and_safety</span>Health</Link>/
           <Link to='/'><span class="material-icons-outlined">home</span>Home</Link>
         </span>
       </div>
       <div className="Header">
-        <h2><span class="material-icons-outlined">data_saver_off</span> Registered Users</h2>
-        <Link to='/users/Add'>
+        <h2><span class="material-icons-outlined">health_and_safety</span>Users health Data</h2>
+        {/* <Link to='/users/Add'>
                 ADD USER
-        </Link>
+        </Link> */}
       </div>
-      <div className="FILTERS">
+      {/* <div className="FILTERS">
         <input onChange={(e)=>setMobile(e.target.value)} value={Mobile} type="text" placeholder='Searc By Mobile Number' />
         <input onChange={(e)=>setEmail(e.target.value)} value={Email} type="text" placeholder='Searc By Email Address' />
-      </div>
+      </div> */}
        <MUIDataTable
           className="table-responsive"
           data={USERS?USERS:[]}

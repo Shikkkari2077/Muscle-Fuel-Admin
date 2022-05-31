@@ -1,5 +1,7 @@
 import {
     SET_DRIVER_LIST,
+    SET_USERS_LIST,
+    SET_HEALTH_DATA,
 } from './Types'
 
 import Constant from '../Constant'
@@ -100,3 +102,40 @@ export const GetDriverList = (data) => (dispatch)=>{
         console.log(err.message);
       });
   }
+
+
+  export const GetUserList = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/user/get-all-users`, data)
+      .then((res) => {
+            if(res.data){
+                dispatch({
+                    type:SET_USERS_LIST,
+                    payload:res.data.data
+                })
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  export const GetHealthData = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/healthDetails/get`, data)
+      .then((res) => {
+            if(res.data){
+                dispatch({
+                    type:SET_HEALTH_DATA,
+                    payload:res.data.data
+                })
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+

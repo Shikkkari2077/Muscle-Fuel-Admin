@@ -1,1 +1,3 @@
 export const SET_DRIVER_LIST = 'SET_DRIVER_LIST';
+export const SET_USERS_LIST = 'SET_USERS_LIST';
+export const SET_HEALTH_DATA = 'SET_HEALTH_DATA';
