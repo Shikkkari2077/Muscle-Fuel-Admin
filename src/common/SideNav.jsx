@@ -16,8 +16,11 @@ const SideNav = () => {
     if(location.pathname.includes('/')){
         setNavActive(1)
     }
+    if(location.pathname.includes('/category')){
+      setNavActive(2)
+  }
     if(location.pathname.includes('/health')){
-        setNavActive(2)
+        setNavActive(3)
     }
     if(location.pathname.includes('/banners')){
         setNavActive(3)
@@ -40,9 +43,15 @@ const SideNav = () => {
           </li>
         </Link>
 
-        <Link to="/health" className="navLink"  onClick={()=>setNavActive(2)}>
+        <Link to="/category" className="navLink"  onClick={()=>setNavActive(2)}>
           <li className={navActive==2?"Link LinkActive":"Link"}>
-           <p><span class="material-icons-outlined">health_and_safety</span>Health</p>
+           <p><span class="material-icons-outlined">category</span>Health Category</p>
+          </li>
+        </Link>
+
+        <Link to="/health" className="navLink"  onClick={()=>setNavActive(3)}>
+          <li className={navActive==3?"Link LinkActive":"Link"}>
+           <p><span class="material-icons-outlined">health_and_safety</span>User Health</p>
           </li>
         </Link>
 

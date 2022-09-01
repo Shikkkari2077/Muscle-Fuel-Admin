@@ -2,6 +2,7 @@ import {
     SET_DRIVER_LIST,
     SET_USERS_LIST,
     SET_HEALTH_DATA,
+    SET_HEALTH_CATEGORY_DATA,
 } from './Types'
 
 import Constant from '../Constant'
@@ -114,6 +115,80 @@ export const GetDriverList = (data) => (dispatch)=>{
                     type:SET_USERS_LIST,
                     payload:res.data.data
                 })
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  export const GetHealthCategoryList = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/healthFields/get`, data)
+      .then((res) => {
+            if(res.data){
+                dispatch({
+                    type:SET_HEALTH_CATEGORY_DATA,
+                    payload:res.data.data
+                })
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  export const ADDHealthCategory = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/healthFields/add`, data,{
+        headers:{
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then((res) => {
+            if(res.data){
+                dispatch(GetHealthCategoryList())
+                window.location.href='#/category'
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  export const EDITHealthCategory = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/healthFields/edit`, data,{
+        headers:{
+          "Content-Type": "multipart/form-data"
+        }
+      })
+      .then((res) => {
+            if(res.data){
+                dispatch(GetHealthCategoryList())
+                window.location.href='#/category'
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+  export const ADDUserHealthData = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/healthDetails/set-v1`, data,{
+        headers:{
+          "Content-Type": "application/json"
+        }
+      })
+      .then((res) => {
+            if(res.data){
+                dispatch(GetUserList())
+                window.location.href='#/health'
             }
       })
       .catch((err) => {

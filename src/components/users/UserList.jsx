@@ -126,6 +126,16 @@ const UserList = () => {
         fontWeight:'600'
       }}>Status</span>
     },
+     customBodyRender:(status)=>{
+            return(
+                <div>
+                {/* <Toggle
+                    defaultChecked={status==1?true:false}
+                    onChange={onStatusChange} /> */}
+                   {status=='active'? <label className='btnACTIVE'>Active</label>: <label className='btnIN_ACTIVE'>Inactive</label>}
+                </div>
+            )
+        }
 },
 },
     {
@@ -138,14 +148,21 @@ const UserList = () => {
           return<span style={{
             letterSpacing:'0',
             fontWeight:'600'
-          }}>Statistics</span>
+          }}>Health Data</span>
         },
         customBodyRender: (user_master_id)=>{
-          return <>
-            <Link to={`/health/Stats/${user_master_id}`}>
-              <span style={{color:'#dc2f2f'}} class="material-icons-outlined">equalizer</span>
+          return <div className='iconsDIV'>
+            <Link to={`/health/Stats/${user_master_id}`} style={{textDecoration:'none'}}>
+              
+                <span style={{color:'#2b4353'}} class="material-icons-outlined">query_stats</span>
+             
             </Link>
-          </>
+            <Link to={`/health/StatsAdd/${user_master_id}`} style={{textDecoration:'none'}}>
+              
+                <span style={{color:'#005792'}} class="material-icons-outlined">playlist_add</span>
+             
+            </Link>
+          </div>
         }
       }
     },

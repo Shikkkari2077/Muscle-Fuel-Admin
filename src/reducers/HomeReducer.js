@@ -2,12 +2,14 @@ import {
     SET_DRIVER_LIST,
     SET_USERS_LIST,
     SET_HEALTH_DATA,
+    SET_HEALTH_CATEGORY_DATA,
 } from '../actions/Types'
   
   const initialState = {
     DriverList: false,
     UserList: false,
     HealthData: false,
+    HealthCategoryData: false,
   };
   
   const homeReducer = (state = initialState, action) => {
@@ -16,6 +18,11 @@ import {
         return {
           ...state,
           DriverList: action.payload,
+        };
+      case SET_HEALTH_CATEGORY_DATA:
+        return {
+          ...state,
+          HealthCategoryData: action.payload,
         };
       case SET_USERS_LIST:
         return {
