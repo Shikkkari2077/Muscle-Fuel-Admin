@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { GetHealthCategoryList, ADDUserHealthData} from '../../actions/HomeActions'
+import { GetHealthCategoryList, ADDUserHealthData, GetHealthData} from '../../actions/HomeActions'
 import MUIDataTable from 'mui-datatables'
 import { Link , useParams} from 'react-router-dom'
 import Toggle from 'react-toggle'
@@ -10,10 +10,35 @@ const HealthStatsADD = () => {
     const routeDATA = useParams()
     const dispatch = useDispatch()
     const HealthCategoryData = useSelector(state => state.MuscleFuel.HealthCategoryData)
+    const UserList = useSelector(state => state.MuscleFuel.UserList);
+    const HealthData = useSelector(state => state.MuscleFuel.HealthData);
+    const [userInfo, setUserInfo] = useState(false)
 
     useEffect(() => {
         dispatch(GetHealthCategoryList())
+        
       }, [])
+
+      useEffect(() => {
+        if(UserList!==undefined){
+          var filtered = UserList.filter(data=>data.user_master_id==routeDATA.userId)
+            setUserInfo(filtered[0])
+        }else{
+            setUserInfo(false)
+        }
+    }, [UserList])
+
+    useEffect(() => {
+        if(routeDATA.userId){
+            var data={
+                userId:routeDATA.userId,
+                order:'desc'
+            }
+
+            dispatch(GetHealthData(data))
+        }
+    }, [routeDATA.userId])
+    
    
 
     const [DATE, setDATE] = useState('')
@@ -23,6 +48,15 @@ const HealthStatsADD = () => {
         const updatedOption = healtDetail.map((data,i)=> index==i?Object.assign(data,{[e.target.name]:e.target.value}):data)
         setHealtDetail(updatedOption)
     }
+
+    useEffect(() => {
+        if(HealthData.length>0){
+            setDATE(HealthData[0].createdAt)
+            setHealtDetail(HealthData[0].healthData)
+        }
+    }, [HealthData])
+
+    console.log('HealthData',HealthData);
 
     const AddHealtDetail = () =>{
         var item = {value:null,healthMasterId:null}
@@ -68,6 +102,23 @@ const HealthStatsADD = () => {
       <input onChange={(e)=>setMobile(e.target.value)} value={Mobile} type="text" placeholder='Searc By Mobile Number' />
       <input onChange={(e)=>setEmail(e.target.value)} value={Email} type="text" placeholder='Searc By Email Address' />
     </div> */}
+     <div className="userDetails">
+              <p>
+                <b>Name:</b> {userInfo.user_firstname+" "+ userInfo.user_lastname} 
+              </p>
+              <p>
+             <b> Email:</b> {userInfo.email}
+              </p>
+              <p>
+              <b>DOB:</b> {userInfo.date_of_birth}
+              </p>
+              <p>
+             <b> Gender:</b> {userInfo.user_gender}
+              </p>
+              <p>
+             <b> Status:</b> {userInfo.status}
+              </p>
+            </div>
      <form onSubmit={OnSubmit} className='ADD_USER'>
            
             <div className="secondary">

@@ -22,7 +22,7 @@ const DataContainer = () => {
                 <Route exact path='/health' element={<UserList />}/>
                 <Route exact path='/health/StatsAdd/:userId' element={<HealthStatsADD />}/>
                 <Route exact path='/health/Stats/:userId' element={<UserHealthStats />}/>
-                <Route exact path='/health/Stats/:userId/:type' element={<UserHealthDataSingle />}/>
+                <Route exact path='/health/Stats/:userId/:healthID/:type' element={<UserHealthDataSingle />}/>
           
             </Routes>
        </div>

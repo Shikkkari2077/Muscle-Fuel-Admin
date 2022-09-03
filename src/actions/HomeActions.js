@@ -199,7 +199,7 @@ export const GetDriverList = (data) => (dispatch)=>{
   export const GetHealthData = (data) => (dispatch)=>{
 
     axios
-      .post(Constant.getAPI() + `/healthDetails/get`, data)
+      .post(Constant.getAPI() + `/healthDetails/get-v1`, data)
       .then((res) => {
             if(res.data){
                 dispatch({

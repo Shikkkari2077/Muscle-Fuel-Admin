@@ -11,10 +11,12 @@ const UserHealthDataSingle = () => {
 
     const HealthData = useSelector(state => state.MuscleFuel.HealthData);
 
+    const [FinalData, setFinalData] = useState([])
+
     useEffect(() => {
         var data = {
             userId:parseInt(paramData.userId),
-            category:paramData.type,
+            healthDetailsMasterId:paramData.healthID,
             order:'asc'
         }
      dispatch(GetHealthData(data))
@@ -22,7 +24,22 @@ const UserHealthDataSingle = () => {
 
 
     console.log('HealthData',HealthData);
+
+    useEffect(() => {
+     if(HealthData){
+      var Data = HealthData.map((item,index)=>{
+        var name = paramData.type
+        return {
+          createdAt:item.createdAt,
+          Data:item.healthData[0].value
+        }
+      })
+
+      setFinalData(Data)
+     }
+    }, [HealthData])
     
+    console.log('FinalData',FinalData);
 
   return (
     <div className='IMP'>
@@ -40,7 +57,7 @@ const UserHealthDataSingle = () => {
         <LineChart
           width={1000}
           height={400}
-          data={HealthData}
+          data={FinalData}
           margin={{
             top: 5,
             right: 30,
@@ -50,11 +67,11 @@ const UserHealthDataSingle = () => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="createdAt" />
-          <YAxis />
+          <YAxis/>
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey={`${paramData.type}`} stroke="#8884d8" activeDot={{ r: 8 }} />
-          {/* <Line type="monotone" dataKey="uv" stroke="#82ca9d" /> */}
+          <Line type="monotone" dataKey="Data" stroke="#82ca9d" />
         </LineChart >
       {/* </ResponsiveContainer> */}
      

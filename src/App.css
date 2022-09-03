@@ -269,6 +269,7 @@
     border-radius: 4px;
     font-size: 1rem;
     outline: none;
+    width: 100%;
     color: #363636;
     padding: 0.4rem 0.4rem;
 }
@@ -303,9 +304,16 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    box-shadow: 0px 0px 5px #36363673;
+    box-shadow: 0px 0px 5px #cf4747a1 ;
     border-radius: 10px;
     padding: 1rem;
+}
+.statsCard > div {
+    border-right: 2px solid #dc2f2f;
+    width: 15%;
+}
+.statsCard img {
+    height: 40px;
 }
 .statsCard span:nth-child(1){
     color: #dc2f2f;
@@ -442,6 +450,7 @@
 
 .ADD_USER{
     box-shadow: 0px 0px 5px #36363636;
+    margin-top: 15px;
 }
 .ADD_USER .primary {
     padding: 1rem;
@@ -557,4 +566,13 @@
     color: #363636;
     font-weight: 600;
     background: #fff;
+}
+
+.userDetails{
+    box-shadow: 0px 0px 5px #36363636;
+    border-radius: 3px;
+    padding: 10px;
+}
+.userDetails p {
+    font-size: 20px;
 }
