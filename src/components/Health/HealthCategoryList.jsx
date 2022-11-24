@@ -35,7 +35,7 @@ const HealthCategoryList = () => {
    const columns = [
     
     {
-      name: "imageUrl",
+      name: "imageUrlMen",
       options: {
         filter: true,
         sort: true,
@@ -43,12 +43,32 @@ const HealthCategoryList = () => {
           return<span style={{
             letterSpacing:'0',
             fontWeight:'600'
-          }}>Image</span>
+          }}>Image Men</span>
         },
-        customBodyRender:(imageUrl)=>{
+        customBodyRender:(imageUrlMen)=>{
             return(
                 <div className='healthCat_img'>
-                    <img src={imageUrl} alt="" />
+                    <img src={imageUrlMen} alt="" />
+                </div>
+            )
+        }
+      },
+    },
+    {
+      name: "imageUrlWomen",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender:()=>{
+          return<span style={{
+            letterSpacing:'0',
+            fontWeight:'600'
+          }}>Image Women</span>
+        },
+        customBodyRender:(imageUrlWomen)=>{
+            return(
+                <div className='healthCat_img'>
+                    <img src={imageUrlWomen} alt="" />
                 </div>
             )
         }
@@ -56,7 +76,7 @@ const HealthCategoryList = () => {
     },
     {
       name: "field",
-      label: "Category Name",
+      label: "Category Name (En)",
       options: {
         filter: true,
         sort: true,
@@ -64,14 +84,28 @@ const HealthCategoryList = () => {
           return<span style={{
             letterSpacing:'0',
             fontWeight:'600'
-          }}>Category Name</span>
+          }}>Category Name (En)</span>
+        }
+      }
+    },
+
+    {
+      name: "fieldAr",
+      label: "Category Name (Ar)",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender:()=>{
+          return<span style={{
+            letterSpacing:'0',
+            fontWeight:'600'
+          }}>Category Name (Ar)</span>
         }
       }
     },
     
     {
       name: "unit",
-      label: "Unit",
       options: {
         filter: true,
         sort: true,
@@ -79,7 +113,20 @@ const HealthCategoryList = () => {
           return<span style={{
             letterSpacing:'0',
             fontWeight:'600'
-          }}>Unit</span>
+          }}>Unit (En)</span>
+        },
+      }
+    },
+    {
+      name: "unitAr",
+      options: {
+        filter: true,
+        sort: true,
+        customHeadLabelRender:()=>{
+          return<span style={{
+            letterSpacing:'0',
+            fontWeight:'600'
+          }}>Unit (Ar)</span>
         },
       }
     },

@@ -3,6 +3,8 @@ import {
     SET_USERS_LIST,
     SET_HEALTH_DATA,
     SET_HEALTH_CATEGORY_DATA,
+    SET_TROLLY_TEMP_LIST,
+    SET_TEMP_LIST,
 } from './Types'
 
 import Constant from '../Constant'
@@ -213,4 +215,59 @@ export const GetDriverList = (data) => (dispatch)=>{
       });
   }
 
+  export const GetTrollyTempData = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/trollytemperature/admin/get`, data)
+      .then((res) => {
+            if(res.data){
+                dispatch({
+                    type:SET_TROLLY_TEMP_LIST,
+                    payload:res.data.data
+                })
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+
+  export const GetTempData = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/temperature/admin/get`, data)
+      .then((res) => {
+            if(res.data){
+                dispatch({
+                    type:SET_TEMP_LIST,
+                    payload:res.data.data
+                })
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
+
+
+  export const sendNotification = (data) => (dispatch)=>{
+
+    axios
+      .post(Constant.getAPI() + `/notification/send`, data)
+      .then((res) => {
+            if(res.data.status){
+              toast.success(`${res.data.message}`, {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            }else{
+              toast.error(`${res.data.message}`, {
+                position: toast.POSITION.TOP_RIGHT
+            });
+            }
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  }
 

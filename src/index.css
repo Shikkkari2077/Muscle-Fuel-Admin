@@ -23,13 +23,59 @@ code {
   font-size: 0.95rem;
 }
 .IMP{
- 
+ position: relative !important;
+ /* border: 1px solid red */
 }
 
 
 
 
-
+.messageModal{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  gap: 10px;
+}
+.messageModal h4{
+  text-align: center;
+}
+.messageModal input, .messageModal textarea{
+  width: 97%;
+  font-size: 15px;
+  padding: 5px;
+  outline: none;
+  border: 1px solid #363636;
+  border-radius: 3px;
+}
+.messageModal div {
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 10px;
+  padding-right: 3px;
+}
+.messageModal div button{
+  padding: 7px 10px;
+  width: 90px;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: #f95959;
+  border: none;
+  color: #fff;
+  border-radius: 3px;
+}
+.messageModal div button:hover{
+  background: #f13030;
+}
+.messageModal div button:nth-child(2){
+  background: #42b883;
+}
+.messageModal div button:nth-child(2):hover{
+  background: #0f8f55;
+}
 
 
 

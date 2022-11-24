@@ -16,21 +16,21 @@ const SideNav = () => {
     if(location.pathname.includes('/')){
         setNavActive(1)
     }
-    if(location.pathname.includes('/category')){
+    if(location.pathname.includes('/temperature')){
       setNavActive(2)
-  }
+    }
+    if(location.pathname.includes('/category')){
+        setNavActive(3)
+    }
     if(location.pathname.includes('/health')){
-        setNavActive(3)
-    }
-    if(location.pathname.includes('/banners')){
-        setNavActive(3)
-    }
-    if(location.pathname.includes('/sponsor')){
         setNavActive(4)
     }
     if(location.pathname.includes('/lucky-draw')){
         setNavActive(5)
-  }
+    }
+    if(location.pathname.includes('/push-notification')){
+    setNavActive(5)
+    }
   }, [navActive,location.pathname]);
 
   return (
@@ -43,15 +43,40 @@ const SideNav = () => {
           </li>
         </Link>
 
-        <Link to="/category" className="navLink"  onClick={()=>setNavActive(2)}>
-          <li className={navActive==2?"Link LinkActive":"Link"}>
+        <Link to="#" className="navLink"  onClick={()=>setNavActive(2)}>
+          <li className={navActive==2?"Link LinkActive":"Link"} onClick={()=>setDrop2(!drop2)}>
+            <p><span class="material-icons-outlined">thermostat</span>Temperature</p>
+            <span class="material-icons-outlined">{drop2?'arrow_drop_down':'arrow_left'}</span>
+          </li>
+          {drop2?<ul className="subnavLINKS">
+              <Link to="/temperature/Trolly" className="subnavLink">
+                <li>
+                  <span class="material-icons-outlined">navigate_next</span>Trolly Temperature
+                </li>
+              </Link>
+              <Link to="/temperature" className="subnavLink">
+                <li>
+                  <span class="material-icons-outlined">navigate_next</span>Temperature
+                </li>
+              </Link>
+            </ul>:null}
+        </Link>
+       
+        <Link to="/category" className="navLink"  onClick={()=>setNavActive(3)}>
+          <li className={navActive==3?"Link LinkActive":"Link"}>
            <p><span class="material-icons-outlined">category</span>Health Category</p>
           </li>
         </Link>
 
-        <Link to="/health" className="navLink"  onClick={()=>setNavActive(3)}>
-          <li className={navActive==3?"Link LinkActive":"Link"}>
+        <Link to="/health" className="navLink"  onClick={()=>setNavActive(4)}>
+          <li className={navActive==4?"Link LinkActive":"Link"}>
            <p><span class="material-icons-outlined">health_and_safety</span>User Health</p>
+          </li>
+        </Link>
+
+        <Link to="/push-notification" className="navLink"  onClick={()=>setNavActive(5)}>
+          <li className={navActive==5?"Link LinkActive":"Link"}>
+           <p><span class="material-icons-outlined">notifications</span>Push Notification</p>
           </li>
         </Link>
 

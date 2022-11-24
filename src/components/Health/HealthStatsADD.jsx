@@ -13,7 +13,7 @@ const HealthStatsADD = () => {
     const UserList = useSelector(state => state.MuscleFuel.UserList);
     const HealthData = useSelector(state => state.MuscleFuel.HealthData);
     const [userInfo, setUserInfo] = useState(false)
-
+    
     useEffect(() => {
         dispatch(GetHealthCategoryList())
         
@@ -21,7 +21,7 @@ const HealthStatsADD = () => {
 
       useEffect(() => {
         if(UserList!==undefined){
-          var filtered = UserList.filter(data=>data.user_master_id==routeDATA.userId)
+          var filtered = UserList?.filter(data=>data?.user_master_id==routeDATA?.userId)
             setUserInfo(filtered[0])
         }else{
             setUserInfo(false)
@@ -39,7 +39,7 @@ const HealthStatsADD = () => {
         }
     }, [routeDATA.userId])
     
-   
+   console.log('UserList',UserList);
 
     const [DATE, setDATE] = useState('')
     const [healtDetail, setHealtDetail] = useState([{value:null,healthMasterId:null}])
@@ -56,7 +56,7 @@ const HealthStatsADD = () => {
         }
     }, [HealthData])
 
-    console.log('HealthData',HealthData);
+    console.log('HealthCategoryData',HealthCategoryData);
 
     const AddHealtDetail = () =>{
         var item = {value:null,healthMasterId:null}
@@ -141,7 +141,7 @@ const HealthStatsADD = () => {
                                 <option value=""> -- Select Health Category -- </option>
                                 {HealthCategoryData?HealthCategoryData.map((data,idx)=>(
                                     <option value={data.id}>
-                                        {data.field}
+                                        {data.field} / {data.fieldAr}
                                     </option>
                                 )):null}
                             </select>
